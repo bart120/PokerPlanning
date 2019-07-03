@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PokerPlanning.Views.SplashScreen">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="PokerPlanning"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="OK" Clicked="Button_Clicked" />
+            <Image>
+                <Image.Source>
+                    <OnPlatform>
+                        <On Platform="Android" Value="launcher_foreground.png" />
+                    </OnPlatform>
+                </Image.Source>
+            </Image>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
