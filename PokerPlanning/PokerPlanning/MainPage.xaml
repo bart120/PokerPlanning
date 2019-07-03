@@ -1,10 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:PokerPlanning"
-             
+             xmlns:local="clr-namespace:PokerPlanning"         
+            xmlns:views="clr-namespace:PokerPlanning.Views"
              x:Class="PokerPlanning.MainPage">
+    <TabbedPage.Children>
+        <NavigationPage Title="Rejoindre">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:JoinRoomPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Créer un salon">
+            <x:Arguments>
+                <views:CreateRoomPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Paramètres">
+            <x:Arguments>
+                <views:SettingsPage />
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
 
-    
 
-</ContentPage>
+
+
+</TabbedPage>
