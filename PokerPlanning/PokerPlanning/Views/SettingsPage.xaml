@@ -3,8 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PokerPlanning.Views.SettingsPage" >
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Placeholder="Saisir votre pseudo" Text="{Binding UserName, Mode=TwoWay}" />
-        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Text="Pseudo" />
+            <Entry Grid.Column="1" Grid.Row="0" Placeholder="Saisir votre pseudo" Text="{Binding UserName, Mode=TwoWay}" />
+
+            <Label Grid.Column="0" Grid.Row="1" Text="Equipe" />
+            <Entry Grid.Column="1" Grid.Row="1" Placeholder="Saisir votre équipe" Text="{Binding Team, Mode=TwoWay}" />
+
+            <Label Grid.Column="0" Grid.Row="2" Text="Salon" />
+            <Entry Grid.Column="1" Grid.Row="2" Placeholder="Saisir votre salon" Text="{Binding RoomName, Mode=TwoWay}" />
+
+            <Button Grid.Row="3" Grid.ColumnSpan="2" Text="Enregistrer" Command="{Binding SaveCommand}" />
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

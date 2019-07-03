@@ -1,4 +1,5 @@
-﻿using PokerPlanning.Views;
+﻿using PokerPlanning.Services;
+using PokerPlanning.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,6 +12,7 @@ namespace PokerPlanning
         public App()
         {
             InitializeComponent();
+            DependencyService.Register<ISettingsStore, SettingsStore>();
 
             MainPage = new MainPage();
         }

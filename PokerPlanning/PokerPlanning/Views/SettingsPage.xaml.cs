@@ -20,7 +20,6 @@ namespace PokerPlanning.Views
 			InitializeComponent ();
 
             this.BindingContext = this.viewModel = new SettingsViewModel();
-            this.viewModel.UserName = "toto";
 		}
 	}
 }
