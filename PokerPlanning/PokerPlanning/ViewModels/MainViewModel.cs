@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokerPlanning.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -6,21 +7,24 @@ using Xamarin.Forms;
 
 namespace PokerPlanning.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
-        public event Action<int, string> onjoinRoom;
-        public ICommand AddRoomCommand { get; set; }
+        private bool isEnabledMenu;
+        private ISettingsStore settingsStore;
 
-        public ICommand JoinRoomCommand { get; set; }
+        public bool IsEnabledMenu
+        {
+            get { return isEnabledMenu; }
+            set { SetProperty(ref isEnabledMenu, value); }
+        }
+
+
 
         public MainViewModel()
         {
-
-
-            this.AddRoomCommand = new Command(() =>
-            {
-
-            });
+            this.settingsStore = DependencyService.Get<ISettingsStore>(DependencyFetchTarget.GlobalInstance);
+            var settings = this.settingsStore.LoadSettings();
+            IsEnabledMenu = (settings != null);
         }
         
     }

@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PokerPlanning"         
             xmlns:views="clr-namespace:PokerPlanning.Views"
+            xmlns:viewModels="clr-namespace:PokerPlanning.ViewModels"
              x:Class="PokerPlanning.MainPage">
+    <TabbedPage.BindingContext>
+        <viewModels:MainViewModel />
+    </TabbedPage.BindingContext>
+    
     <TabbedPage.Children>
-        <NavigationPage Title="Rejoindre">
+        <NavigationPage Title="Rejoindre" IsEnabled="{Binding IsEnabledMenu}">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="" />
@@ -15,12 +20,12 @@
                 <views:JoinRoomPage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Créer un salon">
+        <NavigationPage Title="Créer un salon" IsEnabled="{Binding IsEnabledMenu}">
             <x:Arguments>
                 <views:CreateRoomPage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Paramètres">
+        <NavigationPage Title="Paramètres" >
             <x:Arguments>
                 <views:SettingsPage />
             </x:Arguments>

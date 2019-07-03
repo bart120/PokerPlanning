@@ -12,14 +12,19 @@ namespace PokerPlanning.Services
     {
         private const string  SETTINGS = "SETTINGS";
 
+        private SettingsModel model;
+
         public void SaveSettings(SettingsModel model)
         {
             Preferences.Set(SETTINGS, JsonConvert.SerializeObject(model));
+            this.model = model;
         }
 
         public SettingsModel LoadSettings()
         {
-            return JsonConvert.DeserializeObject<SettingsModel>( Preferences.Get(SETTINGS, ""));
+            if(this.model == null)
+                this.model = JsonConvert.DeserializeObject<SettingsModel>( Preferences.Get(SETTINGS, ""));
+            return this.model;
         }
 
        
