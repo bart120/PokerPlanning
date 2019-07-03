@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokerPlanning.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,14 @@ namespace PokerPlanning.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingsPage : ContentPage
 	{
-		public SettingsPage ()
+        private SettingsViewModel viewModel;
+
+        public SettingsPage ()
 		{
 			InitializeComponent ();
+
+            this.BindingContext = this.viewModel = new SettingsViewModel();
+            this.viewModel.UserName = "toto";
 		}
 	}
 }
