@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokerPlanning.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace PokerPlanning.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RoomPage : ContentPage
 	{
-		public RoomPage ()
+        RoomViewModel viewModel;
+		public RoomPage (string roomName)
 		{
 			InitializeComponent ();
+            this.BindingContext = this.viewModel = new RoomViewModel(roomName);
 		}
 	}
 }

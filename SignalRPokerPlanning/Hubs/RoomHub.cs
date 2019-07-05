@@ -13,6 +13,13 @@ namespace SignalRPokerPlanning.Hubs
         public async Task CreateRoom (RoomModel room)
         {
             await Clients.All.SendAsync("ReceiveNewRoom", room);
+            await Groups.AddToGroupAsync(Context.ConnectionId, room.Name);
+        }
+
+        public async Task JoinRoom(string roomName, string pseudo)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
+            await Clients.Group(roomName).SendAsync("ReceiveJoinRoom", pseudo);
         }
     }
 }

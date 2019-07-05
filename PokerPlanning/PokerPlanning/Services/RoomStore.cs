@@ -13,6 +13,7 @@ namespace PokerPlanning.Services
         private const string URL = "https://signalrpokerplanning.azurewebsites.net/roomhub";
 
         public event Func<RoomModel, Task> CreateRoomEvent;
+        public event Func<string, Task> JoinRoomEvent;
 
         public RoomStore()
         {
@@ -30,6 +31,14 @@ namespace PokerPlanning.Services
                 Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
                 {
                     await this?.CreateRoomEvent(room);
+                });
+            });
+
+            this.hubRoom.On<string>("RecieveJoinRoom", async (pseudo) =>
+            {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await this?.JoinRoomEvent(pseudo);
                 });
             });
         }
