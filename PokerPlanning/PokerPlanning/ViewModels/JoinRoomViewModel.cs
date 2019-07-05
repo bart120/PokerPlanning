@@ -22,7 +22,7 @@ namespace PokerPlanning.ViewModels
             //checkedexeptions addon
             this.settingsStore = DependencyService.Get<ISettingsStore>(DependencyFetchTarget.GlobalInstance);
             this.roomStore = DependencyService.Get<IRoomStore>(DependencyFetchTarget.GlobalInstance);
-
+            this.Rooms = new ObservableCollection<RoomModel>();
             ((RoomStore)this.roomStore).CreateRoomEvent += JoinRoomViewModel_CreateRoomEvent;
         }
 
