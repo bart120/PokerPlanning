@@ -13,7 +13,7 @@ namespace PokerPlanning
         {
             InitializeComponent();
             DependencyService.Register<ISettingsStore, SettingsStore>();
-            DependencyService.Register<IPokerStore, PokerStore>();
+            //DependencyService.Register<IPokerStore, PokerStore>();
             MainPage = new MainPage();
         }
 

@@ -1,4 +1,5 @@
 ﻿
+using LibPockerPlanning;
 using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
 using PokerPlanning.Models;
@@ -12,7 +13,7 @@ namespace PokerPlanning.Connections
 {
     public class PokerConnection
     {
-        private const string URL = "Endpoint=https://pokerplanning2019.service.signalr.net;AccessKey=duPEnl8pu5+nWMBDffFPTSGNpcBYBkB8UoTuouTEgRg=;Version=1.0;";
+        private const string URL = "https://pokerfunctions.azurewebsites.net";
 
         private readonly HubConnection connection;
 
@@ -20,7 +21,7 @@ namespace PokerPlanning.Connections
 
         public PokerConnection()
         {
-            connection = new HubConnectionBuilder().WithUrl(URL).Build();
+            connection = new HubConnectionBuilder().WithUrl($"{URL}/api/CreateRoom").Build();
         }
 
         public async Task Start()

@@ -10,10 +10,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\IPokerStore.cs" />
+    <Compile Remove="Services\PokerStore.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\LibPockerPlanning\LibPockerPlanning.csproj" />
   </ItemGroup>
 
   <ItemGroup>
