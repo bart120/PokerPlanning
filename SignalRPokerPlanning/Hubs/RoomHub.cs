@@ -25,7 +25,7 @@ namespace SignalRPokerPlanning.Hubs
         public async Task KickUserRoom(string roomName, string pseudo)
         {
             await Clients.Group(roomName).SendAsync("ReceiveKickUserRoom", pseudo);
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
+            //await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
         }
     }
 }
