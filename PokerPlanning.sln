@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerPlanning.UWP", "PokerP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokerPlanning", "PokerPlanning\PokerPlanning\PokerPlanning.csproj", "{F31E6A63-D49C-4F2B-8407-C117B3117AFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRPokerPlanning", "SignalRPokerPlanning\SignalRPokerPlanning.csproj", "{90FCBE98-EAE2-448A-ACAD-71B932CE4EE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRPokerPlanning", "SignalRPokerPlanning\SignalRPokerPlanning.csproj", "{90FCBE98-EAE2-448A-ACAD-71B932CE4EE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibPockerPlanning", "LibPockerPlanning\LibPockerPlanning.csproj", "{94F19395-BE3B-4BA9-BF65-22239F705E62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibPockerPlanning", "LibPockerPlanning\LibPockerPlanning.csproj", "{94F19395-BE3B-4BA9-BF65-22239F705E62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

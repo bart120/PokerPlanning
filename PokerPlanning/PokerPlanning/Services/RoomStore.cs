@@ -34,7 +34,7 @@ namespace PokerPlanning.Services
                 });
             });
 
-            this.hubRoom.On<string>("RecieveJoinRoom", async (pseudo) =>
+            this.hubRoom.On<string>("ReceiveJoinRoom", async (pseudo) =>
             {
                 Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
                 {
