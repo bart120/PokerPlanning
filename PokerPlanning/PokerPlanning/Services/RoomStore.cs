@@ -27,7 +27,10 @@ namespace PokerPlanning.Services
             await hubRoom.StartAsync();
             this.hubRoom.On<RoomModel>("ReceiveNewRoom", async (room) =>
             {
-                await this?.CreateRoomEvent(room);
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await this?.CreateRoomEvent(room);
+                });
             });
         }
 
