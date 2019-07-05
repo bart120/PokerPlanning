@@ -14,6 +14,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Text="Pseudo" />
@@ -25,7 +26,10 @@
             <Label Grid.Column="0" Grid.Row="2" Text="Salon" />
             <Entry Grid.Column="1" Grid.Row="2" Placeholder="Saisir votre salon" Text="{Binding RoomName, Mode=TwoWay}" />
 
-            <Button Grid.Row="3" Grid.ColumnSpan="2" Text="Créer" Command="{Binding CreateRoomCommand}" />
+            <Label Grid.Column="0" Grid.Row="3" Text="Bloquée" />
+            <CheckBox Grid.Column="1" Grid.Row="3"  IsChecked="{Binding Locked, Mode=TwoWay}" />
+
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Text="Créer" Command="{Binding CreateRoomCommand}" />
 
         </Grid>
     </ContentPage.Content>

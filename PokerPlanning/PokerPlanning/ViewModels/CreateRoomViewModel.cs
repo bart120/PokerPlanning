@@ -47,6 +47,15 @@ namespace PokerPlanning.ViewModels
             set { SetProperty(ref team, value); }
         }
 
+        private bool locked;
+
+        public bool Locked
+        {
+            get { return locked; }
+            set { SetProperty(ref locked, value); }
+        }
+
+
         public CreateRoomViewModel()
         {
             this.CreateRoomCommand = new Command(executeCreateCommand);
@@ -58,6 +67,7 @@ namespace PokerPlanning.ViewModels
             this.RoomName = load?.RoomName ?? "";
             this.Team = load?.Team ?? "";
             this.UserName = load?.UserName ?? "";
+
 
 
             /*if (Device.RuntimePlatform == Device.UWP)
@@ -84,7 +94,7 @@ namespace PokerPlanning.ViewModels
         {
             await this.roomStore.CreateRoom(new RoomModel
             {
-                Locked = false,
+                Locked = this.Locked,
                 Name = this.RoomName,
                 Team = this.Team
             });

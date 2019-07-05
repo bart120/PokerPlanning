@@ -1,18 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:PokerPlanning.Converters"
              x:Class="PokerPlanning.Views.JoinRoomPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IconLockedConverter x:Key="IconConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="RoomsListView"
                       ItemsSource="{Binding Rooms}"
-                      VerticalOptions="FillAndExpand">
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="True"
+                      ItemSelected="RoomsListView_ItemSelected"
+                      >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="10">
-                                <Label Text="{Binding Name}" FontSize="25" FontAttributes="Bold" />
-                                <Label Text="{Binding Team}" FontSize="20"/>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <Image WidthRequest="20" Source="{Binding Locked, Converter={StaticResource IconConverter} }" />
+                                <StackLayout Orientation="Vertical" Padding="10" VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding Name}" FontSize="15" FontAttributes="Bold" />
+                                    <Label Text="{Binding Team}" FontSize="10"/>
+                                </StackLayout>
+                                
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
