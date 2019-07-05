@@ -15,7 +15,7 @@ namespace PokerPlanning.ViewModels
 {
     public class CreateRoomViewModel : BaseViewModel
     {
-        private string url = "https://signalrpokerplanning.azurewebsites.net";
+        private string url = "https://signalrpokerplanning.azurewebsites.net/roomhub";
         private ISettingsStore settingsStore;
         private HubConnection hubRoom;
 
@@ -48,7 +48,7 @@ namespace PokerPlanning.ViewModels
 
         public CreateRoomViewModel()
         {
-            this.CreateRoomCommand = new Command(executeSaveCommand);
+            this.CreateRoomCommand = new Command(executeCreateCommand);
             this.settingsStore = DependencyService.Get<ISettingsStore>(DependencyFetchTarget.GlobalInstance);
             //this.pokerStore = DependencyService.Get<IPokerStore>(DependencyFetchTarget.GlobalInstance);
 
@@ -66,7 +66,7 @@ namespace PokerPlanning.ViewModels
                 .WithUrl(url)
                 .Build();
 
-            this.connect();
+            //this.connect();
         }
 
 
@@ -79,8 +79,9 @@ namespace PokerPlanning.ViewModels
             });
         }
 
-        private async void executeSaveCommand(object obj)
+        private async void executeCreateCommand(object obj)
         {
+            await connect();
             await this.hubRoom.InvokeAsync("CreateRoom", new RoomModel
             {
                 Locked = false,

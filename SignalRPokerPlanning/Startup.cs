@@ -32,6 +32,7 @@ namespace SignalRPokerPlanning
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //2- ajouter le service SignalR
             services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -54,9 +55,10 @@ namespace SignalRPokerPlanning
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            //3- paramétrer le middleware SignalR
             app.UseSignalR(routes =>
             {
-                routes.MapHub<RoomHub>("/roomhub");
+            routes.MapHub<RoomHub>("/roomhub");
             });
 
             app.UseMvc();
