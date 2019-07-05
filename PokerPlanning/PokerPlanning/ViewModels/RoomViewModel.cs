@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PokerPlanning.ViewModels
@@ -10,6 +11,9 @@ namespace PokerPlanning.ViewModels
     public class RoomViewModel : BaseViewModel
     {
         private IRoomStore roomStore;
+        private INavigation nav;
+
+        public ICommand KickUserCommand { get; set; }
 
         public ObservableCollection<string> Users { get; set; }
 
@@ -23,14 +27,31 @@ namespace PokerPlanning.ViewModels
         }
 
 
-        public RoomViewModel(string roomName)
+        public RoomViewModel(string roomName, INavigation nav)
         {
             this.RoomName = roomName;
+            this.nav = nav;
             this.Users = new ObservableCollection<string>();
+            this.KickUserCommand = new Command<string>(executeKickUserCommand);
             this.settingsStore = DependencyService.Get<ISettingsStore>(DependencyFetchTarget.GlobalInstance);
             this.roomStore = DependencyService.Get<IRoomStore>(DependencyFetchTarget.GlobalInstance);
             this.roomStore.JoinRoomEvent += RoomStore_JoinRoomEvent;
+            this.roomStore.KickUserRoomEvent += RoomStore_KickUserRoomEvent;
             this.roomStore.JoinRoom(roomName, settingsStore.LoadSettings().UserName);
+        }
+
+        private async System.Threading.Tasks.Task RoomStore_KickUserRoomEvent(string arg)
+        {
+            this.Users.Remove(arg);
+            if(this.settingsStore.LoadSettings().UserName == arg)
+            {
+                await nav.PopModalAsync();
+            }
+        }
+
+        private async void executeKickUserCommand(string pseudo)
+        {
+            await this.roomStore.KickUserRoom(this.roomName, pseudo);
         }
 
         private async System.Threading.Tasks.Task RoomStore_JoinRoomEvent(string arg)

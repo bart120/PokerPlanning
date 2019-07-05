@@ -17,7 +17,7 @@ namespace PokerPlanning.Views
 		public RoomPage (string roomName)
 		{
 			InitializeComponent ();
-            this.BindingContext = this.viewModel = new RoomViewModel(roomName);
+            this.BindingContext = this.viewModel = new RoomViewModel(roomName, Navigation);
 		}
 	}
 }

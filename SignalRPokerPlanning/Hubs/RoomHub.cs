@@ -21,5 +21,11 @@ namespace SignalRPokerPlanning.Hubs
             await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
             await Clients.Group(roomName).SendAsync("ReceiveJoinRoom", pseudo);
         }
+
+        public async Task KickUserRoom(string roomName, string pseudo)
+        {
+            await Clients.Group(roomName).SendAsync("ReceiveKickUserRoom", pseudo);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
+        }
     }
 }

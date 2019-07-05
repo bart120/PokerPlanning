@@ -9,14 +9,18 @@
                 HorizontalOptions="CenterAndExpand" />
 
             <Entry Placeholder="Titre" />
-            <Entry Placeholder="Description" />
+            <Editor Placeholder="Description" HeightRequest="100" />
             <ListView ItemsSource="{Binding Users}"
                       VerticalOptions="FillAndExpand"
-                      HasUnevenRows="True">
+                      HasUnevenRows="True"
+                      SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Label Text="{Binding}" />
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding KickUserCommand}" Text="Kick" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

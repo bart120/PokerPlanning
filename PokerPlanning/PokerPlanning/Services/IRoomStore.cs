@@ -12,9 +12,13 @@ namespace PokerPlanning.Services
 
         event Func<string, Task> JoinRoomEvent;
 
+        event Func<string, Task> KickUserRoomEvent;
+
         Task CreateRoom(RoomModel room);
 
         Task JoinRoom(string roomName, string pseudo);
+
+        Task KickUserRoom(string roomName, string pseudo);
 
 
     }

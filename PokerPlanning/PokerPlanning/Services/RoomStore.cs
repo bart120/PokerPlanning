@@ -14,6 +14,7 @@ namespace PokerPlanning.Services
 
         public event Func<RoomModel, Task> CreateRoomEvent;
         public event Func<string, Task> JoinRoomEvent;
+        public event Func<string, Task> KickUserRoomEvent;
 
         public RoomStore()
         {
@@ -41,6 +42,14 @@ namespace PokerPlanning.Services
                     await this?.JoinRoomEvent(pseudo);
                 });
             });
+
+            this.hubRoom.On<string>("ReceiveKickUserRoom", async (pseudo) =>
+            {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await this?.KickUserRoomEvent(pseudo);
+                });
+            });
         }
 
         public async Task CreateRoom(RoomModel room)
@@ -51,6 +60,11 @@ namespace PokerPlanning.Services
         public async Task JoinRoom(string roomName, string pseudo)
         {
             await this.hubRoom.InvokeAsync("JoinRoom", roomName, pseudo);
+        }
+
+        public async Task KickUserRoom(string roomName, string pseudo)
+        {
+            await this.hubRoom.InvokeAsync("KickUserRoom", roomName, pseudo);
         }
     }
 }
