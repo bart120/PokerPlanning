@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PokerPlanning.ViewModels
@@ -57,6 +58,7 @@ namespace PokerPlanning.ViewModels
         private async System.Threading.Tasks.Task RoomStore_JoinRoomEvent(string arg)
         {
             this.Users.Add(arg);
+            await TextToSpeech.SpeakAsync($"{arg} a rejoint le salon.");
         }
     }
 }
