@@ -15,9 +15,10 @@ namespace PokerPlanning.ViewModels
 {
     public class CreateRoomViewModel : BaseViewModel
     {
-        private string url = "https://signalrpokerplanning.azurewebsites.net/roomhub";
+        
         private ISettingsStore settingsStore;
-        private HubConnection hubRoom;
+        private IRoomStore roomStore;
+
 
         public ICommand CreateRoomCommand { get; set; }
 
@@ -50,7 +51,7 @@ namespace PokerPlanning.ViewModels
         {
             this.CreateRoomCommand = new Command(executeCreateCommand);
             this.settingsStore = DependencyService.Get<ISettingsStore>(DependencyFetchTarget.GlobalInstance);
-            //this.pokerStore = DependencyService.Get<IPokerStore>(DependencyFetchTarget.GlobalInstance);
+            this.roomStore = DependencyService.Get<IRoomStore>(DependencyFetchTarget.GlobalInstance);
 
             var load = this.settingsStore.LoadSettings();
 
@@ -59,35 +60,40 @@ namespace PokerPlanning.ViewModels
             this.UserName = load?.UserName ?? "";
 
 
-            if (Device.RuntimePlatform == Device.UWP)
+            /*if (Device.RuntimePlatform == Device.UWP)
                 url = "http://localhost:52125/roomhub";
 
             hubRoom = new HubConnectionBuilder()
                 .WithUrl(url)
                 .Build();
 
-            //this.connect();
+            this.connect();*/
         }
 
 
-        private async Task connect()
+        /*private async Task connect()
         {
             await hubRoom.StartAsync();
             this.hubRoom.On<RoomModel>("ReceiveNewRoom", (room) =>
             {
                 Console.WriteLine(room.Name);
             });
-        }
+        }*/
 
         private async void executeCreateCommand(object obj)
         {
-            await connect();
-            await this.hubRoom.InvokeAsync("CreateRoom", new RoomModel
+            await this.roomStore.CreateRoom(new RoomModel
             {
                 Locked = false,
                 Name = this.RoomName,
                 Team = this.Team
             });
+            /*await this.hubRoom.InvokeAsync("CreateRoom", new RoomModel
+            {
+                Locked = false,
+                Name = this.RoomName,
+                Team = this.Team
+            });*/
 
             //await this.pokerStore.StartRoomAsync(this.roomName);
         }
